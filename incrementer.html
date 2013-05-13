@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .styledNumber input{
+                padding: 2px 42px 2px 2px;
+            }
+            .styledNumber a {
+                color: #666;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            .styledNumber a:hover {
+                color: #333;
+            }
+            .styledNumber a#plus{
+                margin-left:-40px;
+            }
+        </style>
+        <script>
+        function validate(evt) {
+          var theEvent = evt || window.event;
+          var key = theEvent.keyCode || theEvent.which;
+          key = String.fromCharCode( key );
+          var regex = /[0-9]|\./;
+          if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+          }
+        }
+        function plus(){
+            var tn = document.getElementById('testingNumber');
+            var val = tn.value;
+            tn.value = ++val;
+        }
+        function minus(){
+            var tn = document.getElementById('testingNumber');
+            var val = tn.value;
+            tn.value = --val;
+        }
+        </script>
+    </head>
+    <body>
+        <div id="testingInputs" class="styledNumber">
+            <input type="number" name="testingNumber" id="testingNumber" onkeypress='validate(event)' value="0"/>
+            <a href="javascript:void(0)" id="plus" onclick="plus()">+</a>
+            <a href="javascript:void(0)" id="minus" onclick="minus()">-</a>
+        </div>
+    </body>
+</html>
